@@ -1,23 +1,20 @@
 const partition3way = (arr) => {
     const firstItem = arr[0];
-    let totalLength = arr.length;
-    let mid = Math.floor(totalLength / 2)-1;
-    let result = Array(totalLength);
-    let header = 0;
-    let tail = totalLength - 1;
-    for (let i = 1; i < totalLength; i++) {
-        if (arr[i] < firstItem) {
-            result[header] = arr[i];
-            header++;
-        }
-        if (arr[i] > firstItem) {
-            result[tail] = arr[i];
+    const length = arr.length;
+    let tail = length - 1;
+    let indexCount = 0; // 用于记录交换
+    for (let i = 0; i < length; i++) {
+        if (arr[i] < firstItem) { // 小于第一个，就交换位置。
+            [arr[indexCount], arr[i]] = [arr[i], arr[indexCount]];
+            indexCount++;
+        } else if(arr[i]>firstItem) {
+            if (i > tail) break;
+            [arr[i], arr[tail]] = [arr[tail], arr[i]];
             tail--;
-        } else {
-            result[mid] = arr[i];
-            mid++
+            i--; // 这里因为换过来的还没有检测，所以i-1向后退一个 再检查一下
         }
     }
-    return result;
+    return arr;
 }
 console.log(partition3way([3, 1, 3, 6, 2, 3, 4, 5]))
+
