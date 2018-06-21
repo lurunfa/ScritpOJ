@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="pig">
+        <div class="pig">
+            <div class="pig">
+                <div class="pig"></div>
+            </div>
+            <div class="pig">
+                <div class="pig"></div>
+            </div>
+            <div class="pig">
+                <div class="pig"></div>
+            </div>
+        </div>
+        <div class="pig">
+            <div class="pig"></div>
+            <div class="pig"></div>
+        </div>
+        <div class="pig">
+            <div class="pig">
+                <div class="pig"></div>
+                <div class="pig"></div>
+                <div class="pig"></div>
+                <div class="pig"></div>
+                <div class="pig"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var pigs = document.getElementsByClassName('pig');
+        const findMostProductivePigChildrenCount = (dom) => {
+            const result = [];
+
+            const checks = (doms, result) => {
+                const childDOM = [];
+                let most = 0;
+                for (let dom of doms) {
+                    if (dom.childElementCount) {
+                        childDOM.push(...dom.children);
+                        if (dom.childElementCount > most) {
+                            most = dom.childElementCount;
+                        }
+                    }
+                }
+                result.push(most);
+                if (childDOM.length) {
+                    checks(childDOM, result)
+                }
+            }
+            checks([dom], result)
+            return result;
+        }
+    </script>
+</body>
+
+</html>
