@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <ul id='adjustable-list'>
+    <li>
+      <span>1</span>
+      <button class='up'>UP</button>
+      <button class='down'>DOWN</button>
+    </li>
+    <li>
+      <span>2</span>
+      <button class='up'>UP</button>
+      <button class='down'>DOWN</button>
+    </li>
+    <li>
+      <span>3</span>
+      <button class='up'>UP</button>
+      <button class='down'>DOWN</button>
+    </li>
+  </ul>
+  <script type="text/javascript">
+    window.onload = function() {
+      initAdjustableList()
+    }
+    const initAdjustableList = () => {
+      const oul = document.getElementById('adjustable-list');
+      const upButton = (e) => {
+        const pLi = e.target.parentElement;
+        oul.insertBefore(pLi,pLi.previousElementSibling);
+      }
+      const downButton = (e) => {
+        console.log(e.target);
+        const pLi = e.target.parentElement;
+        const next  =pLi.nextElementSibling;
+        pLi === oul.lastElementChild?oul.insertBefore(pLi,oul.firstElementChild):oul.insertBefore(next,pLi)
+      }
+      const buttonClick = (e) => {
+        e.target.classList.contains('up') ? upButton(e) : '';
+        e.target.classList.contains('down') ? downButton(e) : '';
+      }
+      oul.addEventListener('click', buttonClick);
+    }
+  </script>
+</body>
+
+</html>
