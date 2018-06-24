@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<body>
+  <ul>
+    <li>全选：
+      <input type='checkbox' id='check-all'>
+    </li>
+    <li>1 选项
+      <input type='checkbox' class='check-item'>
+    </li>
+    <li>2 选项
+      <input type='checkbox' class='check-item'>
+    </li>
+    <li>3 选项
+      <input type='checkbox' class='check-item'>
+    </li>
+    <li>4 选项
+      <input type='checkbox' class='check-item'>
+    </li>
+    <li>5 选项
+      <input type='checkbox' class='check-item'>
+    </li>
+    <li>6 选项
+      <input type='checkbox' class='check-item'>
+    </li>
+  </ul>
+  <script type="text/javascript">
+    function initCheckBox(checkAll = document.getElementById('check-all'), options = [...document.querySelectorAll('.check-item')]) {
+      checkAll.addEventListener('change', () => options.forEach(option => option.checked = checkAll.checked));
+      options.forEach(option => option.addEventListener('change', () => checkAll.checked = options.every(item => item.checked === true)))
+    }
+
+  </script>
+</body>
+
+</html>
